@@ -1,0 +1,174 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up Page</title>
+
+    <style>
+        /* ===== General Styles ===== */
+        body {
+            background-color: #EDE8F5;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* ===== Centering Container ===== */
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(to right, #ade9cf, #A7F3D0, #6EE7B7);
+            padding: 16px;
+        }
+
+        /* ===== Form Box ===== */
+        .form-box {
+            background-color: white;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 16px;
+            padding: 24px;
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .form-box:hover {
+            transform: scale(1.05);
+        }
+
+        /* ===== Heading Styles ===== */
+        h2 {
+            font-size: 24px;
+            font-weight: bold;
+            color: #4a4a4a;
+            margin-bottom: 12px;
+        }
+
+        p {
+            color: #777;
+            font-size: 14px;
+        }
+
+        /* ===== Form Fields ===== */
+        label {
+            font-weight: 500;
+            color: #4a4a4a;
+            display: block;
+            margin-top: 12px;
+            text-align: left;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-top: 6px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            outline: none;
+            transition: border 0.3s ease;
+        }
+
+        input:focus {
+            border-color: #ADBBDA;
+        }
+
+        /* ===== Password Toggle Icon ===== */
+        .password-wrapper {
+            position: relative;
+        }
+
+        .password-wrapper span {
+            position: absolute;
+            top: 50%;
+            right: 12px;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: gray;
+        }
+
+        /* ===== Button Styles ===== */
+        button {
+            width: 100%;
+            background-color: #3D52A0;
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 6px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 16px;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background-color: #EDE8F5;
+            color: black;
+        }
+
+        /* ===== Login Link ===== */
+        .login-link {
+            font-size: 14px;
+            margin-top: 16px;
+        }
+
+        .login-link a {
+            color: #3D52A0;
+            text-decoration: none;
+        }
+
+        .login-link a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="form-box">
+            <h2>Create an Account</h2>
+            <p>Sign up to get started</p>
+
+            <form method="POST" action="{{ url_for('signup') }}" onsubmit="return validatePasswords()">
+
+                
+
+                <label for="id_full_name">Full Name</label>
+                <input type="text" name="full_name" id="id_full_name" required placeholder="Enter your full name">
+
+                <label for="id_email">Email</label>
+                <input type="email" name="email" id="id_email" required placeholder="Enter your email">
+
+                <div class="password-wrapper">
+                    <label for="id_password1">Password</label>
+                    <input type="password" name="password" id="id_password1" required placeholder="Enter your password">
+                    <span onclick="togglePassword('id_password1')">👁</span>
+                </div>
+
+                <div class="password-wrapper">
+                    <label for="id_password2">Confirm Password</label>
+                    <input type="password" name="password2" id="id_password2" required placeholder="Confirm your password">
+                    <span onclick="togglePassword('id_password2')">👁</span>
+                </div>
+
+                <button type="submit">Sign Up</button>
+
+                <p class="login-link">
+                    Already have an account? <a href="/login">Login</a>
+                </p>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function togglePassword(fieldId) {
+            let passwordField = document.getElementById(fieldId);
+            passwordField.type = passwordField.type === "password" ? "text" : "password";
+        }
+    </script>
+</body>
+</html>
